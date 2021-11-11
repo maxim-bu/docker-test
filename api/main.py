@@ -3,10 +3,11 @@ from typing import Optional, List
 from fastapi import FastAPI, Depends
 from sqlalchemy.orm.session import Session
 
-from config import API_PATH
+from config import API_PATH, DATABASE_URL
 from .dependences import get_db
 from . import schemas
 from services import persons
+from sql_app import database
 
 
 app = FastAPI(title="DockerTest", openapi_prefix=API_PATH)
@@ -16,6 +17,14 @@ app = FastAPI(title="DockerTest", openapi_prefix=API_PATH)
 def ping():
     return "pong"
 
+@app.post('/initdb/')
+def init_db():
+    database.init_db()
+    return True
+
+@app.get('/env/')
+def test_env():
+    return DATABASE_URL
 
 @app.get(
     '/persons/',
