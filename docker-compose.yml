@@ -20,7 +20,3 @@ services:
       MYSQL_DATABASE: test
       MYSQL_USER: mysql
       MYSQL_PASSWORD: mysql
-    volumes:
-      - mysql-volume: /var/lib/mysql
-volumes:
-  mysql-volume:
