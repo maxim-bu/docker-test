@@ -46,3 +46,7 @@ def create_person(
     db: Session = Depends(get_db)
 ):
     return persons.create_person(db, params)
+
+@app.get('new')
+def new_test():
+    return 'HELLO'
